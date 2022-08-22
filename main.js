@@ -49,18 +49,14 @@ arr[9] = new User(10, 2, 3, 4, 5);
 // 5. створити класс для об'єктів Client з полями id, name, surname , email, phone, order (поле є масивом зі списком товарів)
 
 class Client {
-    constructor(id, name, surname, email, phone, order, goods1, goods2, goods3, goods4) {
+    constructor(id, name, surname, email, phone, order) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.phone = phone;
-        this.order = [{
-            goods1: goods1,
-            goods2: goods2,
-            goods3: goods3,
-            goods4: goods4,}
-        ];
+        this.order = order;
+
     }
 }
 
@@ -73,31 +69,28 @@ class Client {
 
 let arrArr = [];
 
-arrArr[0] = new Client(2, 2, 6, 1, 2, 1, 32, 5, 2);
-arrArr[1] = new Client(1, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[2] = new Client(7, 2, 6, 1, 2, 1, 311, 5, 3, 4);
-arrArr[3] = new Client(6, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[4] = new Client(8, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[5] = new Client(3, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[6] = new Client(9, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[7] = new Client(5, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[8] = new Client(10, 2, 6, 1, 2, 1, 3, 5, 2);
-arrArr[9] = new Client(4, 2, 6, 1, 2, 1, 3, 5, 2);
+arrArr[0] = new Client(2, 2, 6, 1, 2, [4, 1, 5]);
+arrArr[1] = new Client(1, 2, 6, 1, 2, [4, 1, 5]);
+arrArr[2] = new Client(7, 2, 6, 1, 2, [4, 1, 5, 8]);
+arrArr[3] = new Client(6, 2, 6, 1, 2, [4, 1, 5]);
+arrArr[4] = new Client(8, 2, 6, 1, 2, [4, 1]);
+arrArr[5] = new Client(3, 2, 6, 1, 2, [4, 1, 5, 2, 4]);
+arrArr[6] = new Client(9, 2, 6, 1, 2, [4, 1, 5, 5, 2 ,5]);
+arrArr[7] = new Client(5, 2, 6, 1, 2, [4, 1, 5]);
+arrArr[8] = new Client(10, 2, 6, 1, 2, [4, 1, 5, 8]);
+arrArr[9] = new Client(4, 2, 6, 1, 2, [4, 1, 5, [4, 1, 5]]);
 
 // console.log(arrArr);
 
 // 7. Взяти масив (Client [] з попереднього завдання).Відсортувати його по кількості товарів в полі order по зростанню. (sort)
 
-let sorts = arrArr.sort(function (a, b){return a.order.length - b.order.length});
+let sorts = arrArr.sort(function (a, b){return b.order.length - a.order.length});
 console.log(sorts);
 
 
 
 
 // 8. Створити функцію конструктор яка дозволяє створювати об'єкти car, з властивостями модель, виробник, рік випуску, максимальна швидкість, об'єм двигуна. додати в об'єкт функції:
-
-
-
 
 
 
@@ -121,7 +114,7 @@ console.log(sorts);
 //
 //     // -- increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
 //     this.increaseMaxSpeed = function (newSpeed) {
-//         maxSpeed *= newSpeed;
+//         this.maxSpeed *= newSpeed;
 //         console.log(maxSpeed);
 //     };
 //
@@ -156,55 +149,59 @@ console.log(sorts);
 
 
 
-// class Car  {
-//     constructor(model, vurobnuk, year, maxSpeed, v, drivers) {
-//         this.model = model;
-//         this.vurobnuk = vurobnuk;
-//         this.year = year;
-//         this.maxSpeed = maxSpeed;
-//         this.v = v;
-//
-//         // -- drive () - яка виводить в консоль `їдемо зі швидкістю ${максимальна швидкість} на годину`
-//         this.drive = function () {
-//             console.log(`їдемо зі швидкістю ${maxSpeed} на годину`);
-//         }
-//
-//         // -- info () - яка виводить всю інформацію про автомобіль в форматі `назва поля - значення поля`
-//         this.info = function () {
-//             console.log(y);
-//         }
-//
-//         // -- increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
-//         this.increaseMaxSpeed = function (newSpeed) {
-//             maxSpeed *= newSpeed;
-//             console.log(maxSpeed);
-//         };
-//
-//         // -- changeYear (newValue) - змінює рік випуску на значення newValue
-//         this.changeYear = function (newValue) {
-//             year = newValue;
-//             console.log(year);
-//         };
-//         this.drivers = drivers;
-//     }
-//
-// }
+class Car  {
+    constructor(model, vurobnuk, year, maxSpeed, v, drivers) {
+        this.model = model;
+        this.vurobnuk = vurobnuk;
+        this.year = year;
+        this.maxSpeed = maxSpeed;
+        this.v = v;
+
+
+        this.drivers = drivers;
+    }
+
+    // -- drive () - яка виводить в консоль `їдемо зі швидкістю ${максимальна швидкість} на годину`
+    drive() {
+        console.log(`їдемо зі швидкістю ${this.maxSpeed} на годину`);
+    }
+
+    // -- info () - яка виводить всю інформацію про автомобіль в форматі `назва поля - значення поля`
+    info() {
+        console.log(y);
+    }
+
+    // -- increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
+    increaseMaxSpeed(newSpeed) {
+        let newS = this.maxSpeed * newSpeed;
+        console.log(newS);
+    };
+
+    // -- changeYear (newValue) - змінює рік випуску на значення newValue
+    changeYear(newValue) {
+        let newYear = this.year = newValue;
+        console.log(newYear);
+    };
+
+}
+
+
 //
 //
 // 11. addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів, і додає його в поточний об'єкт car
-// let drivers = {Lastname: 'EnT', Name: 'eVi'};
-//
-//
-//
-//
-// let y = new Car('Megane', 'Renault', 2012, 240, 1.5, drivers);
-// y.drive();
-// y.info();
-// y.increaseMaxSpeed(2);
-// y.changeYear(2022);
-// y.drivers;
+let drivers = {Lastname: 'EnT', Name: 'eVi'};
 
-// console.log(y);
+
+
+
+let y = new Car('Megane', 'Renault', 2012, 240, 1.5, drivers);
+y.drive();
+y.info();
+y.increaseMaxSpeed(2);
+y.changeYear(2022);
+y.drivers;
+
+console.log(y);
 
 
 
@@ -218,21 +215,21 @@ class Popelushka {
     }
 }
 
-let PopArr = [];
+let popArr = [];
 
-PopArr[0] = new Popelushka('Ksenya', 22, 39);
-PopArr[1] = new Popelushka('Zoryana', 21, 38);
-PopArr[2] = new Popelushka('Victoria', 23, 39);
-PopArr[3] = new Popelushka('Nina', 23, 43);
-PopArr[4] = new Popelushka('Sasha', 20, 37);
-PopArr[5] = new Popelushka('Natalia', 19, 39);
-PopArr[6] = new Popelushka('Nika', 25, 36);
-PopArr[7] = new Popelushka('Maria', 23, 36);
-PopArr[8] = new Popelushka('Ira', 27, 38);
-PopArr[9] = new Popelushka('Olga', 23, 39);
+popArr[0] = new Popelushka('Ksenya', 22, 39);
+popArr[1] = new Popelushka('Zoryana', 21, 38);
+popArr[2] = new Popelushka('Victoria', 23, 39);
+popArr[3] = new Popelushka('Nina', 23, 43);
+popArr[4] = new Popelushka('Sasha', 20, 37);
+popArr[5] = new Popelushka('Natalia', 19, 39);
+popArr[6] = new Popelushka('Nika', 25, 36);
+popArr[7] = new Popelushka('Maria', 23, 36);
+popArr[8] = new Popelushka('Ira', 27, 38);
+popArr[9] = new Popelushka('Olga', 23, 40);
 //
 //
-// console.log(PopArr);
+// console.log(popArr);
 
 
 // 13. Сторити об'єкт класу "принц" за допомоги класу який має поля ім'я, вік, туфелька яку він знайшов.
@@ -250,20 +247,42 @@ class Prints {
 //     За допомоги циклу знайти яка попелюшка повинна бути з принцом.
 
 let printsObj = new Prints('Arnold', 29, 43);
-let x = 0;
-for (let key of PopArr) {
-        if (key.footSize === printsObj.shoe) {
-            x = key;
-            console.log(x);
+
+// **********one************
+
+// let x = 0;
+// for (let key of popArr) {
+//         if (key.footSize === printsObj.shoe) {
+//             // x = key;
+//             console.log(x = key);
+//         }
+// }
+
+// ************two***********
+
+let find = (popArr, printsObj) => {
+    for (let item of popArr) {
+        if (printsObj.shoe === item.footSize) {
+            return `My Popelushka is ${item.name}`;
         }
+    }
 }
+
+console.log(find(popArr, printsObj));
+
+
 
 //  14.  Додатково, знайти необхідну попелюшку за допомоги функції масиву find та відповідного колбеку,
 
 
-let pop = PopArr.find(function (value, index) {
-    if (PopArr.footSize === printsObj.shoe) {
-        console.log(true);
+// let pop = popArr.find(function (value, index) {
+//     if (value.footSize === printsObj.shoe) {
+//         console.log(value);
+//
+//     }
+// });
 
-    }
-});
+// *************or**************
+
+let cinderella = popArr.find(value => printsObj.shoe === value.footSize);
+console.log(cinderella);
